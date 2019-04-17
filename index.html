@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tuiter - Viitra</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style/style.css">
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+            <nav>
+                <img src="http://viitra.com/static/images/logos/viitra.svg" alt="viitra-logo" height="32">
+            </nav>
+            <div class="flex-container">
+                <form id="next-tuite" action ="tuites.php" method="GET">
+                    <textarea rows="5" cols="60" name="text-tuite"></textarea><br>
+                    <br>
+                    <div class="subimit">
+                        <input type="submit" class="subimit-button">
+                    </div>
+                </form> 
+            </div>
+
+
+            <div class="published-tuites">
+                <div class="published-box-tuites">
+                    <div class="tuite-text">
+                        Tuite não real - apenas para testes
+                    </div>
+                    <div class="tuite-date">
+                        09:15 - 10 de abr de 2019
+                    </div>
+                </div>
+                <div>
+                    <?php
+                        $("#next-tuite").submit(function(e){
+                            var url = "inserir.php";
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                data: $("#next-tuite").serialize(),
+                                success: function(data)
+                                {
+                                    alert("Recebido: " + data);
+                                }
+                            }); 
+                            e.preventDefault();
+                        });
+                    ?>
+                </div>
+            </div>
+        
+        <script src="/scripts/main.js" async defer></script>
+    </body>
+</html>
